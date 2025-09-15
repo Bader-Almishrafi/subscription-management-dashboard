@@ -6,85 +6,87 @@ YouTube: Django & React – Full Stack Web App Tutorial by Tech With Tim (https:
 
 AI Tools (ChatGPT): for guidance, code snippets, and debugging help.
 
+Additionally, on the frontend, I used a ready-made React + TailwindCSS template from the internet, which I had also adapted previously in my graduation project. This allowed me to focus more on integrating the backend APIs and analytics, instead of starting UI design from scratch.
+
 I did not just copy solutions. Instead, I:
 
 Watched the tutorials to understand Django models, REST APIs, and integration with React.
 
 Used AI to generate drafts or clarify errors.
 
-Validated every suggestion by testing it in my codebase and adapting it to fit the assignment’s requirements.
+Adapted a pre-existing frontend template for a modern UI.
 
-This approach showed me that I can quickly learn new frameworks under pressure, while still making informed technical decisions.
+Validated every suggestion and customization by testing it in my codebase.
+
+This approach showed me that I can quickly learn new frameworks, reuse templates effectively, and still make informed technical decisions.
 
 🏗️ Architectural Decisions
 Backend
 
 Framework: Django + Django REST Framework
 
-Reason: Provides fast API development and powerful built-in features.
+✅ Fast API development and built-in validations.
 
-Trade-off: Steeper learning curve since I was new to Django.
+❌ Learning curve was steep, but manageable.
 
 Model Design: Subscription with fields:
 
 name, category, cost, billing_cycle, start_date, renewal_date, is_active
 
-Added is_active for soft deletes (so analytics stay accurate).
+Auto-calculates renewal_date when missing.
 
-Auto-calculates renewal_date if not provided.
+Soft delete via is_active flag → keeps data for analytics.
 
 Stats Endpoint: /api/subscriptions/stats/
 
-Provides monthly cost, projected yearly cost, upcoming renewals, and potential yearly savings.
-
-Used Django’s aggregation and custom logic for comparisons.
+Provides monthly spend, projected yearly, upcoming renewals, and potential yearly savings.
 
 Frontend
 
-Framework: React (my comfort zone).
+Framework: React
 
-Styling: TailwindCSS (fast prototyping, responsive design).
+Styling: TailwindCSS
 
-Charts: Recharts for data visualization (intuitive API).
+Charts: Recharts
 
-Animation: Framer Motion for smoother UI transitions.
+Animations: Framer Motion
+
+Template: Started from a ready-made dashboard template (React + TailwindCSS), which was then integrated with my backend logic.
 
 🐛 Challenges & Debugging
 
-CORS errors: React couldn’t reach Django API → solved with django-cors-headers.
+CORS errors → solved with django-cors-headers.
 
-Renewal date logic: Sometimes empty → fixed in save() method and allowed manual override.
+Renewal date auto-calculation → fixed in save() method with fallback logic.
 
-Charts not updating after CRUD: Solved by lifting state up and adding onSuccess callbacks to re-fetch API data.
+Charts not refreshing after CRUD → solved with onSuccess callbacks to re-fetch data.
 
-GitHub push issues: Branch mismatch (main vs master) → solved by renaming branch and syncing remote.
+GitHub push issues → fixed branch mismatch (master vs main).
 
 ⚖️ Trade-offs
 
-Used SQLite (simple for demo) instead of PostgreSQL.
+SQLite instead of PostgreSQL for demo simplicity.
 
-Focused on core features (CRUD + analytics + charts) rather than advanced authentication.
+Focused on core features (CRUD + analytics) over advanced auth.
 
-Accepted some UI imperfections in favor of finishing backend logic first.
+Reused a UI template instead of building design from scratch → saved time, consistent design.
 
 🌱 Future Improvements
 
-Add multi-user authentication.
+Authentication and user accounts.
 
-Deployment to cloud (Heroku/Render + PostgreSQL).
+Cloud deployment with PostgreSQL.
 
-Notifications (email/push) for upcoming renewals.
+Notifications for upcoming renewals.
 
-Data export (CSV/Excel).
+Export data to CSV/Excel.
 
 💡 Reflection
 
-My biggest learning was picking up Django from scratch in a short time.
+Learned Django from scratch quickly via tutorials.
 
-Using Tech With Tim’s course gave me a foundation, but I still had to adapt and extend beyond what was covered.
+Reused and customized an existing React template effectively.
 
-Using AI tools accelerated my work, but I always validated outputs by testing and debugging.
+Used AI tools for acceleration, but validated and adapted outputs.
 
-I realized that documentation and clarity are as important as working code.
-
-This project shows my ability to learn fast, think critically, and adapt tools/resources to deliver a working, well-documented solution under time pressure.
+Balanced trade-offs (time vs features) to deliver a working, well-documented solution.
